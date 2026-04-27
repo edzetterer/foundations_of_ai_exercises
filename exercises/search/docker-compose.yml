@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  fai-search:
+    build: notebooks
+    container_name: fai_search_exercises
+    ports:
+      - "8888:8888"
+    volumes:
+      # Mounts your local notebooks/ folder so edits are saved on your machine
+      - ./notebooks:/home/jovyan/work/notebooks
+    restart: unless-stopped
