@@ -23,7 +23,7 @@ New to GitHub? Here are some helpful links:
 
 ```bash
 # After forking, clone YOUR fork:
-git clone https://github.com/<your-username>/fai-search-exercises.git
+git clone https://github.com/<your-username>/foundations_of_ai_exercises.git
 cd foundations_of_ai_exercises
 ```
 
@@ -52,8 +52,13 @@ Choose whichever option suits you best — no programming setup required for opt
 ```bash
 # 1. Clone your fork (see above)
 # 2. Build and start the container:
+cd docker
 docker compose up --build
 
+# If docker compose is not available, use:
+docker-compose up --build
+
+# Try with sudo if you get permission errors.
 # 3. Open your browser and go to:
 #    http://localhost:8888
 #

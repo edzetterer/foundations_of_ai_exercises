@@ -6,18 +6,22 @@ LABEL description="FAI SS2025 – Exercises"
 WORKDIR /home/jovyan/work
 
 # Install dependencies
-COPY ../requirements.txt .
+# Build context is the repo root, so requirements.txt is at the top level
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy notebook and exercise files
-COPY ../exercises/search/notebooks ./notebooks/
+# Copy all exercises into the container
+COPY exercises/ ./exercises/
 
 EXPOSE 8888
 
+# --allow-root   : required when running as root inside Docker
+# --IdentityProvider.token='' : disables token auth (new config key for JupyterLab 4+)
 CMD ["jupyter", "lab", \
      "--ip=0.0.0.0", \
      "--port=8888", \
      "--no-browser", \
-     "--NotebookApp.token=''", \
-     "--NotebookApp.password=''", \
+     "--allow-root", \
+     "--IdentityProvider.token=", \
      "--notebook-dir=/home/jovyan/work"]
+

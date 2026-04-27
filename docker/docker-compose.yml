@@ -2,11 +2,17 @@ version: "3.9"
 
 services:
   fai-exercises:
-    build: ../exercises/search/notebooks
+    build:
+      # Build context must be the repo ROOT so Docker can reach
+      # both requirements.txt and exercises/ from the Dockerfile.
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: fai_search_exercises
     ports:
       - "8888:8888"
     volumes:
-      # Mounts your local notebooks/ folder so edits are saved on your machine
-      - ./notebooks:/home/jovyan/work/notebooks
+      # Mount the exercises folder so edits inside JupyterLab are
+      # saved directly to your local disk and survive container restarts.
+      - ../exercises:/home/jovyan/work/exercises
     restart: unless-stopped
+
