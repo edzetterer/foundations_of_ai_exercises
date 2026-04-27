@@ -1,17 +1,12 @@
 # 🔍 Foundations of Artificial Intelligence – Search Exercises
-**University of Bremen · Institute for Artificial Intelligence · SS 2025**  
-*Prof. Michael Beetz, Ph.D. · Dr. Daniel Beßler*
+**University of Bremen · Institute for Artificial Intelligence · SS 2026**  
+*Prof. Michael Beetz, Ph.D. · Dr. Michaela Kuempel, Sorin Arion*
 
 ---
 
 ## 📋 Contents
 
-| File | Description |
-|------|-------------|
-| `exercises.md` | Worksheet with all tasks (no solutions) |
-| `solutions.md` | Full solutions — look only after trying! |
-| `notebooks/search_exercises.ipynb` | Interactive Jupyter notebook with coding tasks |
-
+Under the exercises folder you can find the exercises and solutions for the exercises of the course. 
 ---
 
 ## 🍴 Getting Started — Fork this Repository First!
@@ -29,7 +24,7 @@ New to GitHub? Here are some helpful links:
 ```bash
 # After forking, clone YOUR fork:
 git clone https://github.com/<your-username>/fai-search-exercises.git
-cd fai-search-exercises
+cd foundations_of_ai_exercises
 ```
 
 ---
@@ -72,8 +67,8 @@ docker compose down
 If you don't have `docker compose` (older Docker versions), use:
 
 ```bash
-docker build -t fai-search .
-docker run -p 8888:8888 -v "$(pwd)/notebooks:/home/jovyan/work/notebooks" fai-search
+docker build -t fai-exercises .
+docker run -p 8888:8888 -v "$(pwd)/notebooks:/home/jovyan/work/notebooks" fai-exercises
 ```
 
 ---
@@ -107,15 +102,18 @@ If it doesn't, copy the URL printed in the terminal.
 ## 🗂️ Repository Structure
 
 ```
-fai-search-exercises/
-├── notebooks/
-│   └── search_exercises.ipynb   # 🐍 Coding exercises
-├── exercises.md                 # ✏️  Worksheet (no solutions)
-├── solutions.md                 # ✅  Full solutions
-├── requirements.txt             # Python dependencies
-├── Dockerfile                   # Container image definition
-├── docker-compose.yml           # Easy one-command start
-└── README.md                    # This file
+foundations_of_ai_exercises/
+├── exercises/
+    └──current_topic                     # The topic of the exercises, like search or logic
+        └──notebooks/
+           └── search_exercises.ipynb    # 🐍 Coding exercises
+        └── exercises.md                 # ✏️  Worksheet (no solutions)
+        └── solutions.md                 # Solutions   
+├── docker
+    └── docker-compose.yml
+    └── Dockerfile                       
+├── requirements.txt                     # Python dependencies
+└── README.md                            # This file
 ```
 
 ---

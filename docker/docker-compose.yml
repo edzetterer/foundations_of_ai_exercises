@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  fai-search:
-    build: notebooks
+  fai-exercises:
+    build: ../exercises/search/notebooks
     container_name: fai_search_exercises
     ports:
       - "8888:8888"
