@@ -13,13 +13,13 @@
 Search algorithms can often be seen as special cases of more general ones. Answer the following questions in your own words:
 
 **1.1** How can **Breadth-First Search (BFS)** be seen as a special case of **Uniform Cost Search (UCS)**?  
-*(Hint: Think about what step costs would make UCS behave exactly like BFS.)*
+> If we set all edge costs to 1, UCS behaves like UCS (layers of the search tree are explored one after another)
 
 **1.2** How are BFS, Depth-First Search (DFS), and UCS all special cases of **Best-First Search**?  
 *(Hint: What evaluation function `f(n)` does each one use?)*
 
 **1.3** How is **UCS** a special case of **A\* Search**?  
-*(Hint: What heuristic `h(n)` would make A\* reduce to UCS?)*
+> `h(n) = 0`
 
 ---
 
@@ -54,17 +54,30 @@ Consider the graph below. Numbers in **brackets** are heuristic estimates `h(n)`
 Fill in the table as you go:
 
 | Step | Node Expanded | Frontier (node / g-cost) |
-|------|--------------|--------------------------|
-| 1    |              |                          |
-| 2    |              |                          |
-| …    |              |                          |
+|------|---------------|--------------------------|
+| 1    |       S       |         A (1), B (3)     |
+| 2    |       A       |         B (3), C (4)     |
+| 3    |       B       |     C (4), C (4), G (5)  |
+| 4    |       C       |     C (4), G (5), G (16) |
+| -    | [remove C]    |          G (5), G (16)   |
+| 5    |       G       |             G (16)       |
 
 - Which path was found? What is its total cost?
+  > S -> B -> G (5)
 
 **2.2** Apply **A\* Search (graph-search variant)** using `f(n) = g(n) + h(n)`.  
 Fill in the same kind of table.
 
+| Step | Node Expanded | Frontier (node / g-cost) |
+|------|---------------|--------------------------|
+| 1    | S             | A (4), B (5)             |
+| 2    | A             | B (5), C (6)             |
+| 3    | B             | G (5), C (6), C (6)      |
+| 4    | G             | C (6), C (6)             |
+
 - Which path was found? How does it compare to UCS?
+> S -> B -> G
+> Same path, but one less note expanded
 
 **2.3** Apply **Greedy Best-First Search** using only `f(n) = h(n)`.
 
