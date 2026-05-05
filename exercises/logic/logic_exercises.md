@@ -46,7 +46,7 @@ $$A \models A \lor B$$
 - (b) $A \leftrightarrow B$
 - (c) None of the above
 
-> (c)
+> ~~(c)~~ (a)
 
 ---
 
@@ -64,7 +64,7 @@ For each sentence, count how many of the 16 models satisfy it:
 > 12
 
 **(c)** $(A \leftrightarrow B) \leftrightarrow D$
-> 4
+> ~~4~~ 8
 
 ---
 
@@ -77,13 +77,13 @@ Briefly justify each answer — a truth table or a short argument is fine.
 |--|---------|------------------------|
 | a | $\text{Smoke} \to \text{Smoke}$ | Valid |
 | b | $(\text{Smoke} \to \text{Fire}) \to (\lnot\text{Smoke} \to \lnot\text{Fire})$ | Neither |
-| c | $\text{Smoke} \lor \text{Fire} \lor \lnot\text{Fire}$ | |
-| d | $((\text{Smoke} \land \text{Heat}) \to \text{Fire}) \leftrightarrow ((\text{Smoke} \to \text{Fire}) \lor (\text{Heat} \to \text{Fire}))$ | |
-| e | $(\text{Smoke} \to \text{Fire}) \to ((\text{Smoke} \land \text{Heat}) \to \text{Fire})$ | |
-| f | $(\text{Fire} \to \text{Smoke}) \land \text{Fire} \land \lnot\text{Smoke}$ | |
+| c | $\text{Smoke} \lor \text{Fire} \lor \lnot\text{Fire}$ | Valid |
+| d | $((\text{Smoke} \land \text{Heat}) \to \text{Fire}) \leftrightarrow ((\text{Smoke} \to \text{Fire}) \lor (\text{Heat} \to \text{Fire}))$ | Valid |
+| e | $(\text{Smoke} \to \text{Fire}) \to ((\text{Smoke} \land \text{Heat}) \to \text{Fire})$ | Valid |
+| f | $(\text{Fire} \to \text{Smoke}) \land \text{Fire} \land \lnot\text{Smoke}$ | Unsat |
 
 **(a)**
-
+> $\text{Smoke} \to \text{Smoke} \equiv \neg\text{Smoke} \lor \text{Smoke}$
 
 **(b)**
 | Smoke | Fire | $(\text{Smoke} \to \text{Fire})$ | $(\lnot\text{Smoke} \to \lnot\text{Fire})$ | $(\text{Smoke} \to \text{Fire}) \to (\lnot\text{Smoke} \to \lnot\text{Fire})$ |
@@ -93,6 +93,21 @@ Briefly justify each answer — a truth table or a short argument is fine.
 |   T   |   F  |                F                 |                      T                     |                                       T                                       |
 |   T   |   T  |                T                 |                      T                     |                                       T                                       |
 
+**(c)**
+> $\text{Fire} \lor \lnot\text{Fire} \vDash \text{Smoke} \lor \text{Fire} \lor \lnot\text{Fire}$
+
+**(d)**
+> $(\text{Smoke} \to \text{Fire}) \lor (\text{Heat} \to \text{Fire})$ <br>
+> $\equiv (\neg\text{Smoke} \lor \text{Fire}) \lor (\neg\text{Heat} \lor \text{Fire})$ <br>
+> $\equiv \neg\text{Smoke} \lor \neg\text{Heat} \lor \text{Fire}$ <br>
+> $\equiv \neg(\text{Smoke} \land \text{Heat}) \lor \text{Fire}$ <br>
+> $\equiv (\text{Smoke} \land \text{Heat}) \to \text{Fire}$
+
+**(e)**
+> $(\text{Smoke} \land \text{Heat}) \to \text{Fire}) \equiv (\text{Smoke} \to \text{Fire}) \lor (\text{Heat} \to \text{Fire})$ und $\text{Smoke} \to \text{Fire} \vDash (\text{Smoke} \to \text{Fire}) \lor (\text{Heat} \to \text{Fire})$
+
+**(f)**
+> Fire needs to be True and Smoke False, but then $\text{Fire} \to \text{Smoke}$ implies Smoke is True. Contradiction. 
 ---
 
 ## Part 4 – Normal Forms ✏️ *(~10 min)*
@@ -155,9 +170,9 @@ Match each FOL formula to its correct English sentence. Write the letter next to
 | 6 | $\forall x.\ (\text{big}(x) \lor \text{cat}(x))$ | |
 | 7 | $\forall x.\ (\text{big}(x) \lor \lnot\text{cat}(x))$ | |
 
-**(A)** All cats are big. **(B)** There exists a small thing or a cat. **(C)** All big things are cats.
-**(D)** All things are big cats. **(E)** All cats are small. **(F)** There exists a big cat.
-**(G)** All small things are cats. **(H)** There exists a big thing or a cat.
+**(A7)** All cats are big. **(B2)** There exists a small thing or a cat. **(C5)** All big things are cats.
+**(D4)** All things are big cats. **(E)** All cats are small. **(F1)** There exists a big cat.
+**(G6)** All small things are cats. **(H3)** There exists a big thing or a cat.
 
 ---
 
@@ -168,14 +183,17 @@ For each sentence, decide whether the FOL formula is a **correct** translation. 
 **(a)** *"Every apartment in Munich is cheaper than some apartment in Starnberg."*
 
 $$\forall x.\ (\text{App}(x) \land \text{In}(x, \text{Munich}) \to \exists y.\ (\text{App}(y) \land \text{In}(x, \text{Starnberg}) \to \text{Rent}(x) < \text{Rent}(y)))$$
+> Wrong. It should be $\text{In}(y, \text{Starnberg})$ instead of $\text{In}(x, \text{Starnberg})$
 
 **(b)** *"There is exactly one apartment in Starnberg with rent below 500€."*
 
 $$\exists x.\ (\text{App}(x) \land \text{In}(x, \text{Starnberg}) \land \forall y.\ (\text{App}(y) \land \text{In}(y, \text{Starnberg}) \land \text{Rent}(y) < 500 \to x = y))$$
+> Correct.
 
 **(c)** *"If some apartment is more expensive than any apartment in Munich, it must be in Starnberg."*
 
 $$\forall x.\ (\text{App}(x) \land \forall y.\ (\text{App}(y) \land \text{In}(y, \text{Munich}) \land \text{Rent}(x) > \text{Rent}(y)) \to \text{In}(x, \text{Starnberg}))$$
+> ~~Correct.~~ Wrong
 
 ---
 
