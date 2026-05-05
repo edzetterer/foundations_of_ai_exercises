@@ -1,3 +1,4 @@
 notebook>=7.0.0
 jupyterlab>=4.0.0
 ipykernel>=6.0.0
+owlready2>=0.46
