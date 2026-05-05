@@ -13,7 +13,7 @@
 Search algorithms can often be seen as special cases of more general ones. Answer the following questions in your own words:
 
 **1.1** How can **Breadth-First Search (BFS)** be seen as a special case of **Uniform Cost Search (UCS)**?  
-> If we set all edge costs to 1, UCS behaves like UCS (layers of the search tree are explored one after another)
+> If we set all edge costs to 1, UCS behaves like BFS (layers of the search tree are explored one after another)
 
 **1.2** How are BFS, Depth-First Search (DFS), and UCS all special cases of **Best-First Search**?  
 *(Hint: What evaluation function `f(n)` does each one use?)*
