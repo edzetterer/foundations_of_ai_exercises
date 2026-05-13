@@ -1,12 +1,26 @@
 @prefix ex: <http://example.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:Alice a ex:Person ;
+ex:Alice a ex:Agent,
+        ex:Person ;
     ex:hasAge 30 ;
     ex:knows ex:Bob .
 
-ex:Bob a ex:Person ;
+ex:knows rdfs:domain ex:Person ;
+    rdfs:range ex:Person .
+
+ex:worksAt rdfs:domain ex:Person ;
+    rdfs:range ex:Organisation .
+
+ex:Bob a ex:Agent,
+        ex:Person ;
     ex:worksAt ex:UniBremen .
 
-ex:UniBremen a ex:University .
+ex:UniBremen a ex:Organisation,
+        ex:University .
+
+ex:University rdfs:subClassOf ex:Organisation .
+
+ex:Person rdfs:subClassOf ex:Agent .
 
